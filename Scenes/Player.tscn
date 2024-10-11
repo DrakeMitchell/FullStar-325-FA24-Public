@@ -1,0 +1,207 @@
+[gd_scene load_steps=17 format=3 uid="uid://d158mra5s8wf8"]
+
+[ext_resource type="Script" path="res://Scenes/character_body_2d.gd" id="1_smkjk"]
+[ext_resource type="Texture2D" uid="uid://bvibmvdb8rwhc" path="res://art/CharacterSprites/SizeOne.png" id="2_6tm5e"]
+[ext_resource type="Texture2D" uid="uid://cw03yv7nns54b" path="res://art/CharacterAnimationSpritesheets/GDDBallGFXSpriteSheet.png" id="3_tjg1j"]
+[ext_resource type="Texture2D" uid="uid://cjeqxy6yl0fj0" path="res://art/ConstellationStarAnimationSpritesheets/StarSpritesheet.png" id="4_dlshq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btbr2"]
+radius = 73.3348
+
+[sub_resource type="Animation" id="Animation_7262g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_sjo3r"]
+resource_name = "Size1to2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31]
+}
+
+[sub_resource type="Animation" id="Animation_i3c0h"]
+resource_name = "Size2to3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_1h6kj"]
+resource_name = "Size3to4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_mmrxa"]
+resource_name = "Size4to5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3pc7"]
+_data = {
+"RESET": SubResource("Animation_7262g"),
+"Size1to2": SubResource("Animation_sjo3r"),
+"Size2to3": SubResource("Animation_i3c0h"),
+"Size3to4": SubResource("Animation_1h6kj"),
+"Size4to5": SubResource("Animation_mmrxa")
+}
+
+[sub_resource type="Animation" id="Animation_5uqco"]
+resource_name = "BlueToYellow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_yq3tg"]
+resource_name = "BlueTwinkle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_xw2kn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_rad5i"]
+resource_name = "YellowTwinkle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_khyxl"]
+_data = {
+"BlueToYellow": SubResource("Animation_5uqco"),
+"BlueTwinkle": SubResource("Animation_yq3tg"),
+"RESET": SubResource("Animation_xw2kn"),
+"YellowTwinkle": SubResource("Animation_rad5i")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Sprite", "animator", "anisprites")]
+script = ExtResource("1_smkjk")
+Sprite = NodePath("Sprite2D")
+animator = NodePath("GrowthAnimation/AnimationPlayer")
+anisprites = NodePath("GrowthAnimation")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(15, 15)
+texture = ExtResource("2_6tm5e")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_btbr2")
+
+[node name="GrowthAnimation" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(20, 20)
+texture = ExtResource("3_tjg1j")
+hframes = 8
+vframes = 4
+frame = 24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GrowthAnimation"]
+libraries = {
+"": SubResource("AnimationLibrary_r3pc7")
+}
+
+[node name="ConstellationAnimation" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 348)
+texture = ExtResource("4_dlshq")
+hframes = 9
+vframes = 3
+frame = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ConstellationAnimation"]
+libraries = {
+"": SubResource("AnimationLibrary_khyxl")
+}

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo51pnimlpjds"]
+
+[ext_resource type="Script" path="res://Scenes/StarPart.gd" id="1_u42ah"]
+[ext_resource type="Texture2D" uid="uid://bvibmvdb8rwhc" path="res://art/CharacterSprites/SizeOne.png" id="2_vg1im"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_et6k3"]
+
+[node name="StarPart" type="Area2D"]
+position = Vector2(420, 173)
+script = ExtResource("1_u42ah")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(11.9556, 11.9556)
+texture = ExtResource("2_vg1im")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6)
+scale = Vector2(6.36213, 6.36213)
+shape = SubResource("CircleShape2D_et6k3")

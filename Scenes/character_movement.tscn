@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkmhlttqheb6m"]
+
+[ext_resource type="Script" path="res://Scenes/character_body_2d.gd" id="1_ym6g0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oixui"]
+radius = 59.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf8kj"]
+size = Vector2(129, 123)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Star" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ym6g0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Star"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Star"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_oixui")
+debug_color = Color(0.466667, 0.0156863, 0.0901961, 1)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Star"]
+
+[node name="Destination" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Destination"]
+position = Vector2(553, 251)
+shape = SubResource("RectangleShape2D_uf8kj")
+debug_color = Color(0.357186, 0.609776, 0.301554, 1)

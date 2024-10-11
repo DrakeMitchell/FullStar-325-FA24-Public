@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjo0d8v1lri3b"]
+
+[ext_resource type="Script" path="res://Scenes/button3.gd" id="1_s6sjv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_huagq"]
+load_path = "res://.godot/imported/Layer 8.png-afc9f13bc4a0ee3647d0c34d4cd8d183.ctex"
+
+[node name="LoseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 884.0
+offset_bottom = 483.0
+texture = SubResource("CompressedTexture2D_huagq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 45.0
+offset_right = 282.0
+offset_bottom = 68.0
+text = "You blew up."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 94.0
+offset_right = 303.0
+offset_bottom = 125.0
+text = "Return to menu"
+script = ExtResource("1_s6sjv")

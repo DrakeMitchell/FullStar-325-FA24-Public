@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://cy7s2puqf5q5k"]
+
+[ext_resource type="Texture2D" uid="uid://cewxoyfqoxqsr" path="res://fullstar/Art/Layer 0.png" id="1_crgll"]
+[ext_resource type="Texture2D" uid="uid://d0fnmgvop1o25" path="res://fullstar/Art/Planets/Layer 30.png" id="2_tj4a2"]
+[ext_resource type="AudioStream" uid="uid://4iatxhtvn6ma" path="res://fullstar/Muisc/337531__levelclearer__noch9.wav" id="3_kh40b"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3v3hb"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(360, 360, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 0.0
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+
+[sub_resource type="Curve" id="Curve_d4wiv"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2mv37"]
+curve = SubResource("Curve_d4wiv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dbpsp"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(360, 360, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -89.2
+angle_max = 177.0
+spread = 0.0
+initial_velocity_min = -20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_2mv37")
+
+[sub_resource type="Curve" id="Curve_4clli"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jj3e6"]
+curve = SubResource("Curve_4clli")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eo21x"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 360, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -2.99999
+angle_max = 3.00001
+angle_curve = SubResource("CurveTexture_jj3e6")
+spread = 0.0
+initial_velocity_min = -40.0
+initial_velocity_max = -35.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 6.0
+
+[sub_resource type="Curve" id="Curve_f4yfj"]
+min_value = 359.99
+max_value = 360.0
+_data = [Vector2(0, 8.98), 0.0, 36.93, 0, 1, Vector2(1, 45.91), 36.93, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lmdyb"]
+curve = SubResource("Curve_f4yfj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4x3ym"]
+particle_flag_disable_z = true
+angle_min = -138.7
+angle_max = 79.3
+angle_curve = SubResource("CurveTexture_lmdyb")
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Environment" id="Environment_j47cr"]
+background_mode = 3
+adjustment_enabled = true
+
+[node name="BackGround" type="Node2D"]
+
+[node name="BackgroundStarFields" type="Node2D" parent="."]
+position = Vector2(676, 294)
+
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -100
+position = Vector2(-109, -3)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_3v3hb")
+lifetime = 140.0
+preprocess = 60.0
+trail_lifetime = 0.01
+
+[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -95
+position = Vector2(-114, -2)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_dbpsp")
+lifetime = 140.0
+preprocess = 60.0
+trail_lifetime = 0.01
+
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -95
+position = Vector2(508, 31)
+amount = 35
+process_material = SubResource("ParticleProcessMaterial_eo21x")
+lifetime = 40.0
+preprocess = 20.0
+trail_lifetime = 0.01
+
+[node name="TestBack" type="Sprite2D" parent="BackgroundStarFields"]
+visible = false
+z_index = -2000
+y_sort_enabled = true
+position = Vector2(-93, 13)
+scale = Vector2(2.30489, 2.13889)
+texture = ExtResource("1_crgll")
+
+[node name="SpinyParticleSystem" type="GPUParticles2D" parent="."]
+position = Vector2(531, 103)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_4x3ym")
+texture = ExtResource("2_tj4a2")
+lifetime = 100.0
+preprocess = 100.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kh40b")
+volume_db = 10.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j47cr")

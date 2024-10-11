@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfxweoet2maer"]
+
+[ext_resource type="Script" path="res://Scenes/GravityObject.gd" id="1_i4b7x"]
+[ext_resource type="Texture2D" uid="uid://crnbhx72x54r5" path="res://fullstar/Art/Planets/From selection-1.png" id="2_u0aju"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bxvss"]
+radius = 8.74289
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q4gdl"]
+radius = 508.101
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_i4b7x")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" groups=["Hazard"]]
+position = Vector2(308.52, 136.59)
+rotation = -3.14159
+scale = Vector2(54.479, -50.504)
+shape = SubResource("CircleShape2D_bxvss")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-29.6, -14.9)
+scale = Vector2(10, 10)
+texture = ExtResource("2_u0aju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(294.5, 140.6)
+shape = SubResource("CircleShape2D_q4gdl")
+
+[connection signal="body_entered" from="RigidBody2D" to="." method="_on_rigid_body_2d_body_entered"]

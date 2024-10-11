@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bysfk5u7q86xi"]
+
+[ext_resource type="Script" path="res://Scenes/GravityObject.gd" id="1_6d81a"]
+[ext_resource type="Texture2D" uid="uid://bxqavpujns3np" path="res://fullstar/Art/Planets/Layer 33.png" id="2_xbqyw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bxvss"]
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_6d81a")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(308.52, 136.59)
+rotation = -0.756874
+scale = Vector2(-67.2306, 45.3455)
+shape = SubResource("CircleShape2D_bxvss")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(328.3, 117)
+scale = Vector2(10, 10)
+texture = ExtResource("2_xbqyw")

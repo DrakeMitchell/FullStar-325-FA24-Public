@@ -1,0 +1,199 @@
+[gd_scene load_steps=15 format=3 uid="uid://w7acgbaqo0jp"]
+
+[ext_resource type="Texture2D" uid="uid://cewxoyfqoxqsr" path="res://fullstar/Art/Layer 0.png" id="2_g83s3"]
+[ext_resource type="Script" path="res://Scenes/button.gd" id="2_gn8hs"]
+[ext_resource type="Script" path="res://Scenes/button_2.gd" id="3_p1ktn"]
+[ext_resource type="AudioStream" uid="uid://y3buumkiiqwe" path="res://fullstar/Muisc/259324__levelclearer__nostro5.wav" id="4_a274t"]
+
+[sub_resource type="Gradient" id="Gradient_q1n3l"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4w8uy"]
+gradient = SubResource("Gradient_q1n3l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hsuq4"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1920, 1080, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 0.0
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+
+[sub_resource type="Curve" id="Curve_5x51l"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_csuwu"]
+curve = SubResource("Curve_5x51l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ia15x"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1920, 1080, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -89.2
+angle_max = 177.0
+spread = 0.0
+initial_velocity_min = -20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_csuwu")
+
+[sub_resource type="Curve" id="Curve_yxtg8"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xjcw0"]
+curve = SubResource("Curve_yxtg8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5v65f"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1920, 1080, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -2.99999
+angle_max = 3.00001
+angle_curve = SubResource("CurveTexture_xjcw0")
+spread = 0.0
+initial_velocity_min = -40.0
+initial_velocity_max = -35.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 6.0
+
+[sub_resource type="SystemFont" id="SystemFont_513lr"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_4w8uy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Play"
+script = ExtResource("2_gn8hs")
+
+[node name="Seperator3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+script = ExtResource("3_p1ktn")
+
+[node name="BackgroundStarFields" type="Node2D" parent="."]
+z_index = 100
+position = Vector2(676, 294)
+
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -100
+position = Vector2(-109, -3)
+amount = 2000
+process_material = SubResource("ParticleProcessMaterial_hsuq4")
+lifetime = 140.0
+preprocess = 60.0
+trail_enabled = true
+trail_lifetime = 0.01
+
+[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -95
+position = Vector2(-114, -2)
+amount = 1500
+process_material = SubResource("ParticleProcessMaterial_ia15x")
+lifetime = 140.0
+preprocess = 60.0
+trail_lifetime = 0.01
+
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -95
+position = Vector2(508, 31)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_5v65f")
+lifetime = 40.0
+preprocess = 20.0
+trail_lifetime = 0.01
+
+[node name="TestBack" type="Sprite2D" parent="BackgroundStarFields"]
+visible = false
+z_index = -2000
+y_sort_enabled = true
+position = Vector2(-93, 13)
+scale = Vector2(2.30489, 2.13889)
+texture = ExtResource("2_g83s3")
+
+[node name="07_MainTitle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a274t")
+autoplay = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 12.0
+offset_top = -104.0
+offset_right = 516.0
+offset_bottom = 191.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 120
+
+[node name="Seperator" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.375884, 0.320915, 0.328755, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = SubResource("SystemFont_513lr")
+theme_override_font_sizes/font_size = 128
+text = "Full Star
+"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Start" to="MarginContainer/HBoxContainer/VBoxContainer/Start" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="MarginContainer/HBoxContainer/VBoxContainer/Quit" method="_on_pressed"]

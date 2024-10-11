@@ -1,0 +1,267 @@
+[gd_scene load_steps=17 format=3 uid="uid://bej4o4ynm8vy6"]
+
+[ext_resource type="PackedScene" uid="uid://bo51pnimlpjds" path="res://Scenes/Star Part.tscn" id="1_jsis6"]
+[ext_resource type="PackedScene" uid="uid://cfxweoet2maer" path="res://Scenes/GravityObject.tscn" id="2_f3ihe"]
+[ext_resource type="PackedScene" uid="uid://bsoe52ndffrt4" path="res://Scenes/GuideIndicator.tscn" id="2_fuftd"]
+[ext_resource type="AudioStream" uid="uid://4iatxhtvn6ma" path="res://fullstar/Muisc/337531__levelclearer__noch9.wav" id="3_2p7kq"]
+[ext_resource type="PackedScene" uid="uid://d158mra5s8wf8" path="res://Scenes/Player.tscn" id="3_m0t2p"]
+[ext_resource type="PackedScene" uid="uid://bysfk5u7q86xi" path="res://Scenes/GravityObjectTwo.tscn" id="5_nvo6n"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fbgpg"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(800, 800, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+
+[sub_resource type="Curve" id="Curve_mpt6b"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_voitu"]
+curve = SubResource("Curve_mpt6b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gslgt"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(500, 500, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -89.2
+angle_max = 177.0
+spread = 0.0
+initial_velocity_min = -0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_voitu")
+
+[sub_resource type="Curve" id="Curve_fbabo"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_htpqk"]
+curve = SubResource("Curve_fbabo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fw8rm"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(500, 500, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -2.99999
+angle_max = 3.00001
+angle_curve = SubResource("CurveTexture_htpqk")
+spread = 0.0
+initial_velocity_min = -10.4
+initial_velocity_max = -2.65
+gravity = Vector3(0, 0, 0)
+scale_min = 0.65
+scale_max = 1.35
+
+[sub_resource type="Gradient" id="Gradient_0y774"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.0745098, 0, 0.12549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5c5dj"]
+gradient = SubResource("Gradient_0y774")
+
+[sub_resource type="Environment" id="Environment_051oq"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.15
+adjustment_enabled = true
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("3_m0t2p")]
+z_index = 10
+position = Vector2(848, 351)
+
+[node name="GuideIndicator" parent="Player" instance=ExtResource("2_fuftd")]
+
+[node name="321901RhodesmasNebula-music-loop" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-427, 581)
+stream = ExtResource("3_2p7kq")
+autoplay = true
+
+[node name="BackgroundStarFields" type="Node2D" parent="."]
+position = Vector2(2067, 292)
+
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -100
+scale = Vector2(50, 50)
+amount = 100000
+process_material = SubResource("ParticleProcessMaterial_fbgpg")
+lifetime = 140.0
+preprocess = 60.0
+visibility_rect = Rect2(-400, -400, 800, 748.31)
+local_coords = true
+
+[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = -95
+position = Vector2(-1381, 3.05176e-05)
+scale = Vector2(36.795, 36.795)
+amount = 5000
+process_material = SubResource("ParticleProcessMaterial_gslgt")
+lifetime = 140.0
+preprocess = 60.0
+visibility_rect = Rect2(-400, -400, 800, 800)
+local_coords = true
+
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields"]
+z_index = 20
+position = Vector2(36.002, -1489)
+scale = Vector2(50, 50)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_fw8rm")
+lifetime = 40.0
+preprocess = 30.0
+visibility_rect = Rect2(-400, -400, 800, 800)
+local_coords = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+z_index = -500
+custom_minimum_size = Vector2(1920, 1080)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120240.0
+offset_top = -63865.0
+offset_right = -61946.0
+offset_bottom = -27344.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.17894, 3.48903)
+texture = SubResource("GradientTexture2D_5c5dj")
+
+[node name="Star_Fragments" type="Node2D" parent="."]
+
+[node name="StarPart" parent="Star_Fragments" instance=ExtResource("1_jsis6")]
+position = Vector2(2577, -499)
+scale = Vector2(2, 2)
+disable_mode = 1
+
+[node name="StarPart2" parent="Star_Fragments" instance=ExtResource("1_jsis6")]
+position = Vector2(8263, -4263)
+scale = Vector2(2, 2)
+
+[node name="StarPart3" parent="Star_Fragments" instance=ExtResource("1_jsis6")]
+position = Vector2(-5765, -12023)
+scale = Vector2(2, 2)
+
+[node name="StarPart4" parent="Star_Fragments" instance=ExtResource("1_jsis6")]
+position = Vector2(16827, -8911)
+scale = Vector2(2, 2)
+
+[node name="StarPart5" parent="Star_Fragments" instance=ExtResource("1_jsis6")]
+position = Vector2(5210, -14163)
+scale = Vector2(2, 2)
+
+[node name="Line2D" type="Line2D" parent="Star_Fragments"]
+position = Vector2(2577, -499)
+scale = Vector2(2, 2)
+points = PackedVector2Array(0, 0, 2833, -1865, 7186, -5822.5, 1323.5, -6805, -4185.5, -5808.5, 2833, -1865)
+default_color = Color(1, 1, 0.470588, 0.694118)
+
+[node name="Planets" type="Node2D" parent="."]
+position = Vector2(3311, -2754)
+scale = Vector2(5, 5)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Planets"]
+use_mipmaps = true
+
+[node name="Area2D" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") instance=ExtResource("5_nvo6n")]
+position = Vector2(95.9999, -1686.2)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/Layer 33.png"
+gravity_str = 999999.0
+forceMult = 650
+contactDist = 325
+
+[node name="BluePlanet6" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") groups=["Hazard"] instance=ExtResource("2_f3ihe")]
+position = Vector2(1555.4, -2772.2)
+scale = Vector2(1, 1)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/Layer 30.png"
+gravity_str = 999999.0
+contactDist = 325
+
+[node name="BluePlanet7" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") groups=["Hazard"] instance=ExtResource("2_f3ihe")]
+position = Vector2(2257, -1070.8)
+scale = Vector2(1, 1)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/From selection-1.png"
+gravity_str = 999999.0
+contactDist = 325
+
+[node name="BluePlanet5" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") groups=["Hazard"] instance=ExtResource("2_f3ihe")]
+position = Vector2(-564.8, -1208.8)
+scale = Vector2(1, 1)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/From selection-1.png"
+gravity_str = 999999.0
+forceMult = 800
+contactDist = 325
+
+[node name="BluePlanet3" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") groups=["Hazard"] instance=ExtResource("2_f3ihe")]
+position = Vector2(-2334.2, -1331.4)
+scale = Vector2(1, 1)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/From selection.png"
+gravity_str = 999999.0
+forceMult = 600
+contactDist = 325
+
+[node name="BluePlanet4" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") instance=ExtResource("2_f3ihe")]
+position = Vector2(-210, 923.6)
+scale = Vector2(0.999999, 0.999999)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/From selection-1.png"
+gravity_str = 999999.0
+contactDist = 325
+
+[node name="BluePlanet8" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") groups=["Hazard"] instance=ExtResource("2_f3ihe")]
+position = Vector2(-1464.2, -1837.2)
+scale = Vector2(0.2, 0.2)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/From selection.png"
+gravity_str = 999999.0
+forceMult = 600
+contactDist = 325
+
+[node name="BluePlanet9" parent="Planets/CanvasGroup" node_paths=PackedStringArray("player") groups=["Hazard"] instance=ExtResource("2_f3ihe")]
+position = Vector2(893.2, -584)
+scale = Vector2(0.2, 0.2)
+player = NodePath("../../../Player")
+sprite = "res://fullstar/Art/Planets/From selection.png"
+gravity_str = 999999.0
+forceMult = 600
+contactDist = 325
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_051oq")
+
+[connection signal="body_entered" from="Star_Fragments/StarPart" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart" to="Star_Fragments/StarPart" method="_on_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart2" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart2" to="Star_Fragments/StarPart2" method="_on_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart3" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart3" to="Star_Fragments/StarPart3" method="_on_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart4" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart4" to="Star_Fragments/StarPart4" method="_on_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart5" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Star_Fragments/StarPart5" to="Star_Fragments/StarPart5" method="_on_body_entered"]
+[connection signal="body_entered" from="Planets/CanvasGroup/BluePlanet6" to="Player" method="_on_blue_planet_6_body_entered"]

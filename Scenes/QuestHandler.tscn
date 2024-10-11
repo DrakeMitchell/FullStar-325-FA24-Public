@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ns7mstnv4ntv"]
+
+[node name="QuestHandler" type="Node2D"]
